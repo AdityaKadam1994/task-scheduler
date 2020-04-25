@@ -1,0 +1,79 @@
+.back-btn {
+    background: white;
+    border: 1px solid rgb(0, 162, 253);
+    color: rgb(0, 162, 253);
+    border-radius: 3px;
+    padding: 10px 18px;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.form-header div {
+    flex-basis: calc(100%/3);
+}
+
+.form-header div:nth-child(2) {
+    text-align: center;
+}
+
+.form-header .form-heading {
+    font-weight: 500;
+}
+
+.form.event-type-form {
+    border: 1px solid black;
+}
+
+.form.event-type-form .field-wrapper {
+    margin-bottom: 25px;
+    border-top: none;
+}
+
+.event-type-form .field-wrapper div:first-child input {
+    width: 40%;
+    margin-bottom: 30px;
+}
+
+.time-duration-wrapper {
+    display: inline-block;
+}
+
+.time-duration-wrapper input {
+    width: 10%;
+    cursor: pointer;
+}
+
+.time-duration-wrapper input.active {
+    border: 1px solid rgb(0, 162, 253);
+}
+
+.form-actions {
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: flex-end;
+}
+
+.form-actions button {
+    margin-right: 25px;
+}
+
+.form-actions .cancel-btn {
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+}
+
+.form-actions .save-btn {
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: rgb(0, 162, 253);
+    border: none;
+    color: white;
+}

@@ -1,0 +1,57 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  margin-top: 25px;
+}
+
+.field-wrapper {
+  border: 1px solid #e6e6e6;
+  padding: 35px 30px;
+}
+
+.form h2 {
+  text-align: center;
+}
+
+.form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.form input:focus {
+  outline: none;
+}
+
+.form label {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.form input+p {
+  margin: 0;
+  margin-bottom: 20px;
+  color: red;
+}
+
+.form input.has-error {
+  background: #ffe5e5;
+  border: 1px solid red;
+}
+
+.form input.has-success {
+  border: 1px solid green;
+  background: #ebffd5;
+}
+
+.form .submit-btn {
+  color: white;
+  background: #098eff;
+  border: none;
+  padding: 14px 15px;
+}
