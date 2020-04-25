@@ -10,12 +10,12 @@ export const eventTypeReducer = (state = [], action) => {
     case "EDITTYPE":
       let storeState = state;
       let formattedData = storeState.map((item, index) => {
-        if (item.id == action.payload[index].id) {
+        if (item.id == action.payload[0].id) {
           return {
             ...item,
-            id: action.payload[index].id,
-            eventTypeName: action.payload[index].eventTypeName,
-            eventDuration: action.payload[index].eventDuration,
+            id: action.payload[0].id,
+            eventTypeName: action.payload[0].eventTypeName,
+            eventDuration: action.payload[0].eventDuration,
           };
         } else {
           return { ...item };

@@ -33,4 +33,5 @@
 
 .event-type-wrapper {
     display: flex;
+    flex-wrap: wrap;
 }
