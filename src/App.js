@@ -9,6 +9,8 @@ import ResetPassword from "./components/reset_password/ResetPassword";
 import Home from "./components/home/Home";
 import AddEventTypes from "./components/event_types/AddEventTypes";
 import EditEventTypes from "./components/event_types/EditEventType";
+import ScheduleMeeting from "./components/schedule_meeting/ScheduleMeeting";
+import AddMeeting from "./components/schedule_meeting/AddMeeting";
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
         <Route path="/reset_password" component={ResetPassword} exact />
         <Route path="/home" component={Home} exact />
         <Route path="/add_event_type" component={AddEventTypes} exact />
+        <Route path="/schedule_meeting" component={ScheduleMeeting} exact />
         <Route path="/edit_event_type/:id" component={EditEventTypes} exact />
+        <Route path="/add_meeting/:time" component={AddMeeting} exact />
       </Switch>
     </div>
   );

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Card from "../common/Card";
 import "./home.css";
 import SecondaryNav from "../navbar/SecondaryNav";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const loginDetails = useSelector((state) => state.userData);
@@ -28,9 +29,9 @@ const Home = () => {
         <div className="top-section">
           <div>
             <p>My Link</p>
-            <a href="#" target="_blank" className="booking-link">
+            <Link to="/schedule_meeting" className="booking-link">
               appointment.com/{link.toLowerCase()}-bookings
-            </a>
+            </Link>
           </div>
           <div>
             <button
