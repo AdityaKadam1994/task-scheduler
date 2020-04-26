@@ -4,6 +4,9 @@ export const meetingReducer = (state = [], action) => {
       //   console.log(action.payload);
       return [...state, ...action.payload];
 
+    case "MEETDETAILS":
+      console.log(...action.payload);
+      return [...action.payload];
     default:
       return state;
   }

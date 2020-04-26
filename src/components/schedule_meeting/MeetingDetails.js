@@ -1,12 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
+import { meetData } from "../../store/actions";
 import "./schduler.css";
 const MeetingDetails = () => {
   const loginDetails = useSelector((state) => state.userData);
   let { event } = useParams();
   const eventTypeData = useSelector((state) => state.eventType);
   const meetDetails = useSelector((state) => state.meetingDetails);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const dispatch = useDispatch();
   const singleData = eventTypeData
     ? eventTypeData.filter((item) => item.eventTypeName == event)
     : null;
@@ -15,6 +20,24 @@ const MeetingDetails = () => {
   //Back Click
   const handleBack = () => {
     window.location.href = "#/add_meeting/" + event;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      meetData([
+        {
+          timeDetails: [...meetDetails],
+          userData: {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+          },
+          eventName: event,
+        },
+      ])
+    );
+    window.location.href = "#/home";
   };
 
   return (
@@ -37,13 +60,13 @@ const MeetingDetails = () => {
             {meetDetails
               ? meetDetails.map((item, index) => (
                   <p key={index}>
-                    {item.day}, {item.month}, {item.year}
+                    {item.day}, {item.month} {item.date}, {item.year}
                   </p>
                 ))
               : null}
           </div>
           <div className="calender-wrapper">
-            <form className="meeting-form form">
+            <form className="meeting-form form" onSubmit={handleSubmit}>
               <h2>Enter Details</h2>
               <div className="field-wrapper">
                 <div className="full-name">
@@ -52,7 +75,12 @@ const MeetingDetails = () => {
                       First Name <sup>*</sup>
                     </label>
                     <br />
-                    <input type="text" value="" required />
+                    <input
+                      type="text"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                    />
                   </div>
 
                   <div>
@@ -60,7 +88,12 @@ const MeetingDetails = () => {
                       Last Name <sup>*</sup>
                     </label>
                     <br />
-                    <input type="text" value="" required />
+                    <input
+                      type="text"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                    />
                   </div>
                 </div>
                 <div>
@@ -68,7 +101,12 @@ const MeetingDetails = () => {
                     Email <sup>*</sup>
                   </label>
                   <br />
-                  <input type="email" value="" required />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </div>
 
                 <button type="submit" className="submit-btn">

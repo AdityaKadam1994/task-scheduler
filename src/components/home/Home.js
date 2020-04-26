@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import Navbar from "../navbar/Navbar";
 import { useSelector } from "react-redux";
 import Card from "../common/Card";
-import "./home.css";
 import SecondaryNav from "../navbar/SecondaryNav";
 import { Link } from "react-router-dom";
+import "./home.css";
 
 const Home = () => {
   const loginDetails = useSelector((state) => state.userData);

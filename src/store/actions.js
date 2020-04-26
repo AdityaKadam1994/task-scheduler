@@ -27,3 +27,8 @@ export const storeTime = (payload) => ({
   type: "TEMPDATA",
   payload: payload,
 });
+
+export const meetData = (payload) => ({
+  type: "MEETDETAILS",
+  payload: payload,
+});

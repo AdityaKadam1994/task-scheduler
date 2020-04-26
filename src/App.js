@@ -12,6 +12,7 @@ import EditEventTypes from "./components/event_types/EditEventType";
 import ScheduleMeeting from "./components/schedule_meeting/ScheduleMeeting";
 import AddMeeting from "./components/schedule_meeting/AddMeeting";
 import MeetingDetails from "./components/schedule_meeting/MeetingDetails";
+import ScheduleEvent from "./components/schedule_meeting/ScheduleEvent";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/home" component={Home} exact />
         <Route path="/add_event_type" component={AddEventTypes} exact />
         <Route path="/schedule_meeting" component={ScheduleMeeting} exact />
+        <Route path="/schedule_event" component={ScheduleEvent} exact />
         <Route
           path="/meeting_details/:event"
           component={MeetingDetails}
