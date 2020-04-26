@@ -72,6 +72,9 @@
   border-right: 1px solid #e6e6e6;
   padding: 20px 20px 30px 30px;
 }
+.scheduler-wrapper.event-details > div {
+  flex-basis: calc(95% / 2);
+}
 
 .scheduler-wrapper.add-meet-wrapper h4 {
   margin: 5px 0;
@@ -120,4 +123,46 @@
 
 .react-calendar {
   margin-top: 20px !important;
+}
+
+.scheduler-wrapper.add-meet-wrapper p {
+  padding: 0;
+  margin-bottom: 0;
+  text-align: left;
+  font-size: 18px;
+  color: rgb(0, 162, 253);
+  font-weight: 700;
+}
+
+.meeting-form h2 {
+  text-align: left;
+}
+
+.meeting-form .field-wrapper {
+  border: none;
+  padding: 0;
+}
+
+.meeting-form label {
+  color: black;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.meeting-form input {
+  margin-bottom: 15px;
+}
+.full-name {
+  display: flex;
+}
+.full-name div {
+  margin-right: 50px;
+  flex-basis: calc(95% / 2);
+}
+.meeting-form input[type="email"] {
+  width: 92%;
+}
+
+.meeting-form button {
+  font-size: 18px;
+  border-radius: 8px;
 }

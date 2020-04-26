@@ -22,3 +22,8 @@ export const editEventType = (payload) => ({
   type: "EDITTYPE",
   payload: payload,
 });
+
+export const storeTime = (payload) => ({
+  type: "TEMPDATA",
+  payload: payload,
+});

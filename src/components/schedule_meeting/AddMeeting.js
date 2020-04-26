@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Calendar from "react-calendar";
 import TimeSlot from "./TimeSlot";
+import { storeTime } from "../../store/actions";
 import moment from "moment";
 import "./schduler.css";
 import "react-calendar/dist/Calendar.css";
@@ -15,11 +16,13 @@ const AddMeeting = () => {
   const [day, setDay] = useState(null);
   const loginDetails = useSelector((state) => state.userData);
   const eventTypeData = useSelector((state) => state.eventType);
+  const dispatch = useDispatch();
   const singleData = eventTypeData
     ? eventTypeData.filter((item) => item.eventTypeName == time)
     : null;
 
   let link = loginDetails ? loginDetails.username : "John Doe";
+  let selectedDate, month, dayName, year;
   console.log(singleData);
   console.log(time);
 
@@ -31,7 +34,7 @@ const AddMeeting = () => {
 
   //Back Click
   const handleBack = () => {
-    window.location.href = "#/schedule_meeting";
+    window.location.href = "#/schedule_meeting/";
   };
 
   //Calendar click
@@ -62,11 +65,11 @@ const AddMeeting = () => {
       "Friday",
       "Saturday",
     ];
-    let date = clickedDate.getDate();
-    let month = monthNames[clickedDate.getMonth()];
-    let dayName = dayNames[clickedDate.getDay()];
-    setDay(`${dayName}, ${month} ${date}`);
-    console.log(dayName, month, date);
+    selectedDate = clickedDate.getDate();
+    month = monthNames[clickedDate.getMonth()];
+    dayName = dayNames[clickedDate.getDay()];
+    year = clickedDate.getFullYear();
+    setDay({ dayname: dayName, month: month, date: selectedDate, year: year });
   };
 
   //Handle Timeslot
@@ -82,20 +85,34 @@ const AddMeeting = () => {
           }
         })
       : null;
+    let filteredTime = trueData.filter((item) => item.selected == true);
     console.log(trueData);
     setTimeSlot(trueData);
+    console.log(day.month, day.dayName);
+    dispatch(
+      storeTime([
+        {
+          month: day.month,
+          day: day.dayname,
+          date: day.date,
+          year: day.year,
+          timeslot: filteredTime,
+        },
+      ])
+    );
+    window.location.href = "#/meeting_details/" + time;
   };
 
   //Timeslots
   function getTimeStops(start, end) {
-    var startTime = moment(start, "HH:mm");
-    var endTime = moment(end, "HH:mm");
+    let startTime = moment(start, "HH:mm");
+    let endTime = moment(end, "HH:mm");
 
     if (endTime.isBefore(startTime)) {
       endTime.add(1, "day");
     }
     let counter = 0;
-    var timeStops = [];
+    let timeStops = [];
 
     while (startTime <= endTime) {
       timeStops.push({
@@ -139,7 +156,9 @@ const AddMeeting = () => {
             {timeSlotVisibility && (
               <React.Fragment>
                 <div>
-                  <h3>{day && day}</h3>
+                  <h3>
+                    {day.dayname},{day.month} {day.date}
+                  </h3>
                 </div>
                 <div className="time-box">
                   {timeSlot
