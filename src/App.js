@@ -13,6 +13,7 @@ import ScheduleMeeting from "./components/schedule_meeting/ScheduleMeeting";
 import AddMeeting from "./components/schedule_meeting/AddMeeting";
 import MeetingDetails from "./components/schedule_meeting/MeetingDetails";
 import ScheduleEvent from "./components/schedule_meeting/ScheduleEvent";
+import ScheduleConfirm from "./components/schedule_meeting/ScheduleConfirm";
 
 function App() {
   return (
@@ -33,6 +34,11 @@ function App() {
         />
         <Route path="/edit_event_type/:id" component={EditEventTypes} exact />
         <Route path="/add_meeting/:time" component={AddMeeting} exact />
+        <Route
+          path="/schedule_confirm/:cat"
+          component={ScheduleConfirm}
+          exact
+        />
       </Switch>
     </div>
   );

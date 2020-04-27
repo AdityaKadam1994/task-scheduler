@@ -10,7 +10,6 @@ const ScheduleMeeting = () => {
 
   let link = loginDetails ? loginDetails.username : "John Doe";
   console.log(loginDetails);
-  console.log(eventTypeData);
 
   return (
     <div className="container">

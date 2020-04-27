@@ -204,3 +204,23 @@
   padding: 10px 20px;
   font-weight: 500;
 }
+
+.scheduler-wrapper.schedule-confirm-wrapper {
+  justify-content: center;
+}
+
+.scheduler-wrapper.schedule-confirm-wrapper>div {
+  flex-basis: calc(100%/1);
+}
+
+.scheduler-wrapper.schedule-confirm-wrapper h4,
+.scheduler-wrapper.schedule-confirm-wrapper h1 {
+  text-align: center;
+}
+
+.scheduler-wrapper.schedule-confirm-wrapper a {
+  text-decoration: none;
+  color: rgb(0, 162, 253);
+  text-align: center;
+  display: block;
+}

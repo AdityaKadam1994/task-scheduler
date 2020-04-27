@@ -27,17 +27,21 @@ const MeetingDetails = () => {
     dispatch(
       meetData([
         {
-          timeDetails: [...meetDetails],
-          userData: {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-          },
-          eventName: event,
+          timeDetails: [
+            {
+              meetDetails,
+              userData: {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+              },
+              eventName: event,
+            },
+          ],
         },
       ])
     );
-    window.location.href = "#/home";
+    window.location.href = "#/schedule_confirm/" + event;
   };
 
   return (
@@ -60,7 +64,10 @@ const MeetingDetails = () => {
             {meetDetails
               ? meetDetails.map((item, index) => (
                   <p key={index}>
-                    {item.day}, {item.month} {item.date}, {item.year}
+                    {item.day ? item.day + "," : null}{" "}
+                    {item.month ? item.month : null}{" "}
+                    {item.date ? item.date + "," : null}{" "}
+                    {item.year ? item.year : null}
                   </p>
                 ))
               : null}
