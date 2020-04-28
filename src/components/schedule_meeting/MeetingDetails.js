@@ -12,27 +12,32 @@ const MeetingDetails = () => {
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);
   const dispatch = useDispatch();
+  let temp = event.split("_");
   const singleData = eventTypeData
-    ? eventTypeData.filter((item) => item.eventTypeName == event)
+    ? eventTypeData.filter((item) => item.eventTypeName == temp[0])
     : null;
   let link = loginDetails ? loginDetails.username : "John Doe";
   console.log(meetDetails);
+
+  console.log(temp[1]);
   //Back Click
   const handleBack = () => {
-    window.location.href = "#/add_meeting/" + event;
+    window.location.href = "#/add_meeting/" + temp[0];
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    meetDetails[meetDetails.length - 1].userDetails.push({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-    });
-
-    dispatch(meetData([...meetDetails]));
-    window.location.href = "#/schedule_confirm/" + event;
+    for (let i = 0; i < meetDetails.length; i++) {
+      if (meetDetails[i].date == temp[1]) {
+        meetDetails[i].userDetails.push({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+        });
+        dispatch(meetData([...meetDetails]));
+        window.location.href = "#/schedule_confirm/" + temp[0];
+      }
+    }
   };
 
   return (

@@ -99,7 +99,8 @@ const AddMeeting = () => {
           meetDetails[i].timeslot.push(...filteredTime);
           meetDetails[i].eventType.push(time);
           dispatch(storeTime([...meetDetails]));
-          window.location.href = "#/meeting_details/" + time;
+          window.location.href = "#/meeting_details/" + time + "_" + day.date;
+          break;
         } else {
           dispatch(
             storeTime([
@@ -111,10 +112,11 @@ const AddMeeting = () => {
                 year: day.year,
                 timeslot: filteredTime,
                 eventType: [time],
+                userDetails: [],
               },
             ])
           );
-          window.location.href = "#/meeting_details/" + time;
+          window.location.href = "#/meeting_details/" + time + "_" + day.date;
         }
       }
     } else {
@@ -128,11 +130,11 @@ const AddMeeting = () => {
             year: day.year,
             timeslot: filteredTime,
             eventType: [time],
+            userDetails: [],
           },
-          { userDetails: [] },
         ])
       );
-      window.location.href = "#/meeting_details/" + time;
+      window.location.href = "#/meeting_details/" + time + "_" + day.date;
     }
   };
 

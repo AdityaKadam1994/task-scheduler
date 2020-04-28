@@ -182,14 +182,20 @@
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 5px;
-  margin-top: 5px;
+  margin-top: 0;
+
 }
 
 .event-list .scheduled-meet {
   padding: 20px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #e6e6e6;
+  border-top: 1px solid #e6e6e6;
+
+}
+
+.event-list h5+.scheduled-meet {
+  border-top: none;
 }
 
 .event-list .scheduled-meet h4 {
@@ -223,4 +229,9 @@
   color: rgb(0, 162, 253);
   text-align: center;
   display: block;
+}
+
+.scheduler-wrapper.schedule-confirm-wrapper p {
+  text-align: center;
+  margin-bottom: 5px;
 }

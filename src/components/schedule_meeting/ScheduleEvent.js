@@ -9,8 +9,11 @@ const ScheduleEvent = () => {
   const loginDetails = useSelector((state) => state.userData);
   const eventTypeData = useSelector((state) => state.eventType);
   const meetDetails = useSelector((state) => state.meetingDetails);
+  // const filteredmeetDetails = meetDetails
+  //   ? meetDetails.filter((item, index) => index !== 1)
+  //   : null;
   console.log(meetDetails);
-  console.log(eventTypeData);
+  // console.log(eventTypeData);
   // const localData = JSON.parse(localStorage.getItem("eventType"));
   // console.log(localData);
 
@@ -31,27 +34,26 @@ const ScheduleEvent = () => {
             {meetDetails
               ? meetDetails.map((item, index) => (
                   <div key={index}>
-                    {item.timeDetails.map((td, idx) => (
-                      <h5 className="event-date" key={idx}>
-                        {td.day}, {td.date} {td.month} {td.year}
-                      </h5>
-                    ))}
-                    <div className="scheduled-meet">
-                      {item.timeDetails[0].timeslot.map((td, ind) => (
-                        <div key={ind}>
-                          <p>{td.time}</p>
+                    <h5 className="event-date">
+                      {item.day}, {item.date} {item.month} {item.year}
+                    </h5>
+                    {item.timeslot.map((ts, index) => (
+                      <div className="scheduled-meet" key={index}>
+                        <div>
+                          <p>{ts.time}</p>
                         </div>
-                      ))}
 
-                      <div>
-                        <h4>
-                          {item.userData.firstName} {item.userData.lastName}
-                        </h4>
-                        <p>
-                          Event type <span>{item.eventName}</span>
-                        </p>
+                        <div>
+                          <h4>
+                            {item.userDetails[index].firstName}{" "}
+                            {item.userDetails[index].lastName}
+                          </h4>
+                          <p>
+                            Event type: <b>{item.eventType[index]}</b>
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 ))
               : null}
