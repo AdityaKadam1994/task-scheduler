@@ -16,6 +16,7 @@ const AddMeeting = () => {
   const [day, setDay] = useState(null);
   const loginDetails = useSelector((state) => state.userData);
   const eventTypeData = useSelector((state) => state.eventType);
+  const meetDetails = useSelector((state) => state.meetingDetails);
   const dispatch = useDispatch();
   const singleData = eventTypeData
     ? eventTypeData.filter((item) => item.eventTypeName == time)
@@ -23,13 +24,11 @@ const AddMeeting = () => {
 
   let link = loginDetails ? loginDetails.username : "John Doe";
   let selectedDate, month, dayName, year;
-  console.log(singleData);
-  console.log(time);
 
+  console.log(meetDetails);
   useEffect(() => {
     let timeStops = getTimeStops("10:00", "19:00");
     setTimeSlot(timeStops);
-    console.log(timeStops);
   }, []);
 
   //Back Click
@@ -85,22 +84,56 @@ const AddMeeting = () => {
           }
         })
       : null;
+
     let filteredTime = trueData.filter((item) => item.selected == true);
     console.log(trueData);
     setTimeSlot(trueData);
     console.log(day.month, day.dayName);
-    dispatch(
-      storeTime([
-        {
-          month: day.month,
-          day: day.dayname,
-          date: day.date,
-          year: day.year,
-          timeslot: filteredTime,
-        },
-      ])
-    );
-    window.location.href = "#/meeting_details/" + time;
+    if (meetDetails !== null && meetDetails.length !== 0) {
+      alert("Inside block");
+      for (let i = 0; i < meetDetails.length; i++) {
+        if (
+          meetDetails[i].month == day.month &&
+          meetDetails[i].date == day.date
+        ) {
+          meetDetails[i].timeslot.push(...filteredTime);
+          meetDetails[i].eventType.push(time);
+          dispatch(storeTime([...meetDetails]));
+          window.location.href = "#/meeting_details/" + time;
+        } else {
+          dispatch(
+            storeTime([
+              ...meetDetails,
+              {
+                month: day.month,
+                day: day.dayname,
+                date: day.date,
+                year: day.year,
+                timeslot: filteredTime,
+                eventType: [time],
+              },
+            ])
+          );
+          window.location.href = "#/meeting_details/" + time;
+        }
+      }
+    } else {
+      alert("else block");
+      dispatch(
+        storeTime([
+          {
+            month: day.month,
+            day: day.dayname,
+            date: day.date,
+            year: day.year,
+            timeslot: filteredTime,
+            eventType: [time],
+          },
+          { userDetails: [] },
+        ])
+      );
+      window.location.href = "#/meeting_details/" + time;
+    }
   };
 
   //Timeslots

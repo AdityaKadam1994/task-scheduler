@@ -24,23 +24,14 @@ const MeetingDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      meetData([
-        {
-          timeDetails: [
-            {
-              meetDetails,
-              userData: {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-              },
-              eventName: event,
-            },
-          ],
-        },
-      ])
-    );
+
+    meetDetails[meetDetails.length - 1].userDetails.push({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+    });
+
+    dispatch(meetData([...meetDetails]));
     window.location.href = "#/schedule_confirm/" + event;
   };
 
